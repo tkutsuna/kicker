@@ -22,7 +22,7 @@ async function main() {
         let url = row[0];
         if (!url) continue;
 
-        url = baseUrl + url;
+        url = baseUrl + url + '&time=' + new Date().getTime();
         process.stdout.write(url);
         let result = await http.get(url).catch(err => console.log(err));
         console.log(`\t${!!result}`);
