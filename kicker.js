@@ -5,10 +5,14 @@ const parse = require('csv-parse/lib/sync'); // requiring sync module
 const rp = require('request-promise');
 
 const csvFileName = 'input.csv';
-const baseUrl = 'http://wwwdev.mapfan.com';
+let baseUrl = '';
 const WAIT_TIME = 3000;
 
 async function main() {
+    if (process.argv.length >= 3) {
+        baseUrl = process.argv[2];
+    }
+
     const http = rp.defaults({ headers: { 'User-Agent': 'request' } });
     // const http = rp;
     let csvFile = fs.readFileSync(csvFileName);
